@@ -32,7 +32,7 @@
      4 > 这个objc_msgSend方法需要三个参数, 第一个就是self, 也就是方法的调用者, 第二个就是SEL, 方法的编号, 也就是方法的名字, 后面就是需要传入的参数, 这个方法的本质就是 给p对象发送一个setName:消息, 然后传入一个@"11"参数
      
      5 > 拓展 : 这里没有IMP, IMP是一个指向函数的指针, 里面存放的是实现setName:这个函数(这里用函数, 因为是C)的地址, 因为现在这的Person类创建的p, 用的是@property属性, 系统自动给我们创建了setName方法, 并且给这个setName方法自动匹配了一个IMP地址, 这个IMP就是实现setName这个方法的函数, 如果我们自己给一个类创建setName方法(底层C去创建)的时候, 需要用到class_addMethod(<#Class  _Nullable __unsafe_unretained cls#>, <#SEL  _Nonnull name#>, <#IMP  _Nonnull imp#>, <#const char * _Nullable types#>)
-         上面这个方法的几个参数, 1>给哪个类添加方法, 2> 添加的方法名字 > 3 就是实现我们这个方法的函数地址(是地址, C语言中函数的地址就是函数的名字4 > 固定写0就行)
+         上面这个方法的几个参数, 1>给哪个类添加方法, 2> 添加的方法名字 > 3 就是实现我们这个方法的函数地址(是地址, C语言中函数的地址就是函数的名字4 > 方法类型)
      */
     objc_msgSend(p, @selector(setName:), @"11");
     /*
